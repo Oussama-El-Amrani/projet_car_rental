@@ -1,0 +1,17 @@
+{
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "altorouter/altorouter": "1.2.0",
+        "filp/whoops": "^2.14",
+        "symfony/var-dumper": "^6.1",
+        "fzaninotto/faker": "^1.5",
+        "vlucas/valitron": "1.4.5",
+        "paypal/paypal-checkout-sdk": "^1.0",
+        "nyholm/psr7": "^1.5",
+        "nyholm/psr7-server": "^1.0"
+    }
+}
