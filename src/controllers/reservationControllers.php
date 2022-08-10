@@ -14,5 +14,5 @@ $carRepository->connection = new DatabaseConnection();
 // dd($params);
 $car = $carRepository->getCar($params['id']);
 // dd($car);
-
+// dd($params);
 require '../templates/reservation.php';

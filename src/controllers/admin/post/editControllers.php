@@ -21,25 +21,32 @@ $success = false;
 $errors = [];
 
 if(!empty($_POST)){
-    Validator::lang('fr');
-    $v = new Validator($_POST);
-    $v->labels(array(
-        'name' => 'modele'
-    ));
-    $v->rule('required','modele');
-    if($v->validate()) {
+    // Validator::lang('fr');
+    // $v = new Validator($_POST);
+    // $v->labels(array(
+    //     'name' => 'modele'
+    // ));
+    // $v->rule('required','modele');
+    // if($v->validate()) {
         // dd($_POST);
         $car->setId($params['id']);
         $car->setModele($_POST['modele']);
         $car->setDaily_price($_POST['daily_price']);
         $car->setMarque($_POST['marque']);
         $car->setAvailable($_POST['available']);
-        $car->setCar_picture($_FILES);
+        // dd($_FILES);
+        if($_FILES['car_picture']['name']!==""){
+            // dd($_FILES['car_picture']['name']);
+            // $car->setCar_picture($_FILES);
+        }
+        
+        
+        // dd($_FILES);
         $CarRepository->update();
         $success = true;
-    } else {
-        $errors = $v->errors();
-    }
+    // } else {
+    //     $errors = $v->errors();
+    // }
 }
 require '../templates/admin/editpage.php';
 

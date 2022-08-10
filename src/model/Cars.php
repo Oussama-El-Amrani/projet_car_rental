@@ -50,7 +50,10 @@ class Car{
         $query = "UPDATE car SET modele = :modele, marque = :marque, daily_price = :daily_price, available = :available, car_picture = :car_picture WHERE id = :id";
 
         $statement = $this->connection->getConnection()->prepare($query);
-        $file_car_picture = self::upload_file($this->car_picture);
+        if($this->car_picture){
+            $file_car_picture = self::upload_file($this->car_picture);
+        }
+        
         $ok = $statement->execute([
             ':id'=>$this->id,
             ':modele'=>$this->modele,
@@ -71,9 +74,9 @@ class Car{
         $query = "INSERT INTO car(id, modele,marque, daily_price, available, car_picture) VALUES(:id, :modele, :marque, :daily_price, :available, :car_picture)";
 
         $statement = $this->connection->getConnection()->prepare($query);
-
+        // dd($statement);
         $file_car_picture = self::upload_file($this->car_picture);
-
+        // dd($file_car_picture);
         $ok = $statement->execute([
             ':id'=>$this->id,
             ':modele'=>$this->modele,
@@ -82,7 +85,7 @@ class Car{
             ':available'=>$this->available,
             ':car_picture'=>$file_car_picture
         ]);
-
+        // dd($ok);
         if(!$ok) {
             throw new Exception("Impossible de changer l'enregistrement $this->id dans la table car");
         }
@@ -91,11 +94,13 @@ class Car{
     public function upload_file($file)
     {
         // dd($_FILES);
-        $uploadDir = "../../imgs/cars_picture";
+        $uploadDir = "./imgs/cars_picture/";
         // $uploadDir = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'imgs' . DIRECTORY_SEPARATOR . 'cars_picture' . DIRECTORY_SEPARATOR;
         $uploadFilename = $uploadDir . basename($file['car_picture']['name']);
-
-        move_uploaded_file($_FILES['car_picture']['tmp_name'],$uploadFilename);
+        // dd($uploadFilename);
+        // dd($_FILES['car_picture']['tmp_name']);
+       
+        move_uploaded_file($_FILES['car_picture']['tmp_name'], $uploadFilename);
         // dd($uploadDir);
 
         return basename($file['car_picture']['name']);
@@ -162,7 +167,7 @@ class Car{
         return $this;
     }
 
-    public function getCar_picture(): ?string
+    public function getCar_picture()
     {
         return $this->car_picture;
     }

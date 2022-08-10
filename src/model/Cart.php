@@ -15,9 +15,10 @@ class Cart{
     private string $check_in;
     private string $check_out;
     private int $price;
+    private bool $payer;
     
     public function addToCart(){
-        $query = "INSERT INTO reservation(id, cin , check_in, check_out, price) VALUES(:id, :cin , :check_in, :check_out, :price)";
+        $query = "INSERT INTO reservation(id, cin , check_in, check_out, price, payer) VALUES(:id, :cin , :check_in, :check_out, :price, :payer)";
 
         $statement = $this->connection->getConnection()->prepare($query);
 
@@ -26,7 +27,8 @@ class Cart{
             ':cin'=>$this->cin,
             ':check_in'=>$this->check_in,
             ':check_out'=>$this->check_out,
-            ':price'=>$this->price
+            ':price'=>$this->price,
+            ':payer'=> false
         ]);
 
         if(!$ok){
@@ -34,12 +36,50 @@ class Cart{
         }
     }
 
-    public function findCarsRental($cin)
+    public function payed(){
+        $query = "UPDATE reservation SET payer = 1 WHERE id = '$this->id' AND cin = '$this->cin'";
+        $statement = $this->connection->getConnection()->prepare($query);
+        // dd($statement);
+        $ok = $statement->execute();
+        if(!$ok) {
+            throw new Exception("Impossible de changer l'enregistrement $this->id dans la table car");
+        }
+    }
+
+    public function NoPayed(){
+        $query = "UPDATE reservation SET payer = 1 WHERE id = '$this->id' AND cin = '$this->cin'";
+        $statement = $this->connection->getConnection()->prepare($query);
+        // dd($statement);
+        $ok = $statement->execute();
+        if(!$ok) {
+            throw new Exception("Impossible de changer l'enregistrement $this->id dans la table car");
+        }
+    }
+
+    public function findCarsRentalOfUser($cin)
     {
-        $query = "SELECT  car.id,check_in,check_out,price,modele,daily_price FROM reservation, utilisateur, car WHERE utilisateur.cin = '$cin' AND utilisateur.cin = reservation.cin AND reservation.id=car.id AND car.available=1";
+        $query = "SELECT  car.id,check_in,check_out,price,modele,daily_price,car_picture,marque FROM reservation, utilisateur, car WHERE utilisateur.cin = '$cin' AND utilisateur.cin = reservation.cin AND reservation.id=car.id AND car.available=1";
 
         $statement = $this->connection->getConnection()->query($query);
         $cars = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $cars;
+    }
+    
+    public function findCarsRentalOfAllUser()
+    {
+        $query = "SELECT  car.id,phone_num,email,city,first_name,last_name,check_in,check_out,price,modele,daily_price,utilisateur.cin FROM reservation, utilisateur, car WHERE utilisateur.cin = reservation.cin AND reservation.id=car.id";
+
+        $statement = $this->connection->getConnection()->query($query);
+        $cars = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $cars;
+    }
+
+    public function findCarsRentaPayed()
+    {
+        $query = "SELECT  car.id,email,city,first_name,last_name,check_in,check_out,price,modele,marque,daily_price,utilisateur.cin FROM reservation, utilisateur, car WHERE utilisateur.cin = reservation.cin AND reservation.id=car.id AND car.available = 0 AND utilisateur.cin= '$this->cin'";
+
+        $statement = $this->connection->getConnection()->query($query);
+        $cars = $statement->fetch(PDO::FETCH_ASSOC);
         return $cars;
     }
 
@@ -164,4 +204,6 @@ class Cart{
 
         return $this;
     }
+
+   
 }

@@ -9,8 +9,8 @@ require '../src/lib/database.php';
 require '../src/model/Cart.php';
 require '../src/model/PaypalPayment.php';
 
-define('PAYPAL_ID' ,'AZcP5NMIfn5ddSPV7eI_bE70hTbS48Cq1J5Fsii7weXdnHHXsiX6hJaRSUvowMyG4Vs-hIGhSMEIDXgf');
-define('PAYPAL_SECRET' ,'EPr9qCReiCR3K22AAQH3oW_dAj8xxp3-04gsMP2UTNR6ep04pJ1a58jyq-H0bkGwCkZWXb45xgI_m3Gv');
+// define('PAYPAL_ID' ,'AZcP5NMIfn5ddSPV7eI_bE70hTbS48Cq1J5Fsii7weXdnHHXsiX6hJaRSUvowMyG4Vs-hIGhSMEIDXgf');
+// define('PAYPAL_SECRET' ,'EPr9qCReiCR3K22AAQH3oW_dAj8xxp3-04gsMP2UTNR6ep04pJ1a58jyq-H0bkGwCkZWXb45xgI_m3Gv');
 
 session_start();
 $CartRepository = new Cart();
@@ -19,7 +19,7 @@ $CartRepository->setcin($_SESSION['cin']);
 // dd($params['id']);
 $CartRepository->setId($params['id']);
 
-$payment = new PaypalPayment(PAYPAL_ID, PAYPAL_SECRET, true);
+// $payment = new PaypalPayment(PAYPAL_ID, PAYPAL_SECRET, true);
 
 if((isset($_GET['check_in']) && !empty($_GET['check_in'])) && (isset($_GET['check_out']) && !empty($_GET['check_out'])))
 {

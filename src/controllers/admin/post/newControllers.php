@@ -16,25 +16,26 @@ $success = false;
 $errors = [];
 
 if(!empty($_POST)){
-    Validator::lang('fr');
-    $v = new Validator($_POST);
-    $v->labels(array(
-        'name' => 'modele'
-    ));
-    $v->rule('required','modele');
-    if($v->validate()) {
+    // Validator::lang('fr');
+    // $v = new Validator($_POST);
+    // $v->labels(array(
+    //     'name' => 'modele'
+    // ));
+    // $v->rule('required','modele');
+    // if($v->validate()) {
         $car->setId($_POST['id']);
         $car->setModele($_POST['modele']);
         $car->setDaily_price($_POST['daily_price']);
         $car->setMarque($_POST['marque']);
         $car->setAvailable($_POST['available']);
         $car->setCar_picture($_FILES);
-        // dd($_POST);
+        // dd($_FILES);
+        // dd($car);
         $car->newCar();
         $success = true;
-    } else {
-        $errors = $v->errors();
-    }
+    // } else {
+    //     $errors = $v->errors();
+    // }
 }
 
 require '../templates/admin/newpage.php';

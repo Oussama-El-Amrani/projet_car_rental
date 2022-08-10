@@ -12,6 +12,8 @@
         "vlucas/valitron": "1.4.5",
         "paypal/paypal-checkout-sdk": "^1.0",
         "nyholm/psr7": "^1.5",
-        "nyholm/psr7-server": "^1.0"
+        "nyholm/psr7-server": "^1.0",
+        "tecnickcom/tcpdf": "^6.4",
+        "dompdf/dompdf": "^2.0"
     }
 }

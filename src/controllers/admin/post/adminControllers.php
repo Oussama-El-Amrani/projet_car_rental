@@ -15,8 +15,8 @@ Authentication::checkAdmin();
 
 $carRepository = new CarsRepository();
 $carRepository->connection = new DatabaseConnection();
-$cars = $carRepository->getCars();
-
+$cars = $carRepository->getCarsForAdmin();
+// dd($cars);
 
 require '../templates/admin/adminpage.php';
 

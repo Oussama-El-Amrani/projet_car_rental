@@ -3,12 +3,14 @@ require '../vendor/autoload.php';
 require '../src/model/Cart.php';
 require '../src/model/PayPalClient.php';
 
-use PayPalHttp\HttpException;
-use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Model\Cart\Cart;
-use App\Lib\Database\DatabaseConnection;
 use Nyholm\Psr7\Response;
+use PayPalHttp\HttpException;
+use App\Lib\Database\DatabaseConnection;
 use App\Model\PayPalClient\PayPalClient;
+use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 
 session_start();
 $client = PayPalClient::client();
@@ -31,7 +33,27 @@ try {
     $CartRepository->setcin($_SESSION['cin']);
     // dd($CartRepository);
     $CartRepository->paymentSuccess();
+    $rentalCarInfo = $CartRepository->findCarsRentaPayed();
     // dd($CartRepository);
+    ob_start();
+    require '../templates/successPayement.php';
+    $page = ob_get_clean();
+
+    $option = new Options(); 
+    $option->set('defaultFont', 'Courier');
+
+    $dompdf = new Dompdf($option);
+    $dompdf->loadHtml($page);
+
+    // (Optional) Setup the paper size and orientation
+    $dompdf->setPaper('A4', 'portrait');
+
+    // Render the HTML as PDF
+    $dompdf->render();
+
+    $fil_name = 'RentalCarsFes_facturation'. $_SESSION['cin'] . '.pdf';
+    // Output the generated PDF to Browser
+    $dompdf->stream($fil_name);
 
     // echo 'ok';
 }catch (HttpException $ex) {

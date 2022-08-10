@@ -13,6 +13,6 @@ $CartRepository->connection = new DatabaseConnection();
 // dd($_SESSION);
 $CartRepository->setcin($_SESSION['cin']);
 
-$cars = $CartRepository->findCarsRental($_SESSION['cin']);
+$cars = $CartRepository->findCarsRentalOfUser($_SESSION['cin']);
 // dd($cars);
 require '../templates/panierpage.php';

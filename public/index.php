@@ -13,7 +13,7 @@ $router->get('/home','homeControllers', 'home');
 
 $router->match('/login','loginControllers' , 'login');
 
-$router->match('/signup', 'signupControllers', 'singup');
+$router->match('/signup', 'signupControllers', 'signup');
 
 $router->match('/signout', 'signoutControllers', 'singout');
 
@@ -42,5 +42,7 @@ $router->match('/admin/post/[i:id]/edit','admin/post/editControllers', 'admin_po
 $router->post('/admin/post/[i:id]/delete','admin/post/deleteControllers', 'admin_post_delete');
 
 $router->match('/admin/post/new','admin/post/newControllers', 'admin_post_new');
+
+$router->match('/admin/post/rentalCarsInfo','admin/post/rentalCarsInfoControllers', 'admin_rentalCarsInfo');
 
 $router->run();
