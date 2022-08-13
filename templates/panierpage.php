@@ -48,7 +48,6 @@
                 <div class="card-body">
                     <div class="d-flex  align-items-center justify-content-between mb-2">
                         <span>Total</span>
-                        <?php //dd($CartRepository->getTotal())?>
                         <span class="fw-bold"><?=$CartRepository->getTotal()?>Dhs</span>
                     </div>
                     <small class="form-text">La livraison de votre véhicule est gratuit

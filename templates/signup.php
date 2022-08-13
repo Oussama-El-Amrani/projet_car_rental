@@ -2,7 +2,7 @@
     <!-- <div class="bg-errors">
         Veuillez reeasayer
     </div> -->
-<?php //endif;?>    
+<?php //endif;?> 
 <main class="container-fluid my-3">
     <section class="row">
         <section class="col-12 d-none d-lg-block col-md-6 mb3">
