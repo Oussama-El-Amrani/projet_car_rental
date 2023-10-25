@@ -8,7 +8,6 @@
                 <img src="/imgs/cars_picture/<?=$car->getCar_picture()?>" alt="<?= $car->getModele()?>" class="card-img-top img-thumbnail">
                 <div class="card-body">
                     <h1 class="h3 card-title text-capitalize"><?= $car->getMarque()?> <?= $car->getModele()?></h1>
-                    <!-- <p class="card-text">modele</p> -->
                     <div class="d-flex justify-content-between mb-2">
                         <div><i class="fa-solid fa-gas-pump pe-2 mx-lg-2"></i> Diesel</div>
                         <div><i class="fa-solid fa-credit-card pe-2 mx-lg-2"></i><?= $car->getDaily_price()?>dh/jour</div>

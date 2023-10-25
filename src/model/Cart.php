@@ -49,7 +49,6 @@ class Cart{
     public function NoPayed(){
         $query = "UPDATE reservation SET payer = 1 WHERE id = '$this->id' AND cin = '$this->cin'";
         $statement = $this->connection->getConnection()->prepare($query);
-        // dd($statement);
         $ok = $statement->execute();
         if(!$ok) {
             throw new Exception("Impossible de changer l'enregistrement $this->id dans la table car");
@@ -103,15 +102,11 @@ class Cart{
         $statement = $this->connection->getConnection()->query($query);
 
         $prices = $statement->fetchAll(PDO::FETCH_ASSOC);
-        // dd($prices);
         
         foreach($prices as $price)
         {
-            // dd((int)$price);
             $totalPrice=$totalPrice+(int)$price['price'];
         }
-        // dd($price);
-        // dd($totalPrice);
         return $totalPrice;
         
     }
@@ -120,7 +115,6 @@ class Cart{
     {
         $query = "UPDATE car,reservation SET car.available = 0 WHERE car.id = reservation.id AND reservation.cin = '$this->cin'";
         $statement = $this->connection->getConnection()->prepare($query);
-        // dd($statement);
         $ok = $statement->execute();
         if(!$ok) {
             throw new Exception("Impossible de changer l'enregistrement $this->id dans la table car");
@@ -147,13 +141,9 @@ class Cart{
         $query = "SELECT daily_price FROM car WHERE car.id = '$this->id'";
 
         $statement = $this->connection->getConnection()->query($query);
-        // dd($statement);
         $price = $statement->fetch(PDO::FETCH_ASSOC);
-        // dd($price['daily_price']);
         $days = (int)(self::getCheck_in()->diff(self::getCheck_out()))->format('%R%a');
-        // dd($days);
         $this->price = $price['daily_price']*(int)$days;
-        // dd($this->price);
         return $this;
     }
 

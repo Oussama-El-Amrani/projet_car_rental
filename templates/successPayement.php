@@ -34,7 +34,6 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <?php //dd($rentalCarInfo);?>
                         <td><?=$rentalCarInfo['cin']?></td>
                         <td><?=$rentalCarInfo['last_name']?></td>
                         <td><?=$rentalCarInfo['first_name']?></td>

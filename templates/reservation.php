@@ -13,7 +13,6 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <h1 class="h4 card-title text-uppercase">caractéristiques du véhicule</h1>
-                    <!-- <p class="card-text">modele</p> -->
                     <div class="d-flex justify-content-between mb-2">
                         <div><i class="fa-solid fa-gas-pump pe-2"></i> Diesel</div>
                         <div><i class="fa-solid fa-credit-card pe-2"></i><?= $car->getDaily_price()?>dh/jour</div>

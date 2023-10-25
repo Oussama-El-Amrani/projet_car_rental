@@ -69,13 +69,10 @@ class User
 
     public function upload_file($file)
     {
-        // dd($_FILES);
         $uploadDir = "./imgs/cars_picture/";
-        // $uploadDir = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'imgs' . DIRECTORY_SEPARATOR . 'usersPicture' . DIRECTORY_SEPARATOR;
         $uploadFilename = $uploadDir . basename($file['user_picture']['name']);
 
         move_uploaded_file($_FILES['user_picture']['tmp_name'],$uploadFilename);
-        // dd($uploadDir);
 
         return basename($file['user_picture']['name']);
     }

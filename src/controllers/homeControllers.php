@@ -16,8 +16,5 @@ Authentication::check();
 $carsRepository = new CarsRepository;
 $carsRepository->connection = new DatabaseConnection();
 $cars = $carsRepository->getCars();
-// dd($cars);
 
-// $car_picture_Dir = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'imgs' . DIRECTORY_SEPARATOR . 'cars_picture' . DIRECTORY_SEPARATOR;
-// dd($car_picture_Dir);
 require '../templates/homepage.php';

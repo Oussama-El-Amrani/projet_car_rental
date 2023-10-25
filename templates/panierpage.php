@@ -6,9 +6,7 @@
                     <span>Panier</span>
                 </div>
                 <div class="card-body">
-                    <?php //dd($cars)?>
                     <?php foreach($cars as $car):?>
-                        <?php //dd($car)?>
                     <article>
                         <div class="row">
                             <figure class="col-12 col-md-3 ">

@@ -11,8 +11,7 @@ require '../src/model/Cart.php';
 
 $carRepository = new Car();
 $carRepository->connection = new DatabaseConnection();
-// dd($params);
+
 $car = $carRepository->getCar($params['id']);
-// dd($car);
-// dd($params);
+
 require '../templates/reservation.php';

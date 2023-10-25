@@ -46,6 +46,4 @@ if(!empty($_POST))
     }
 }
 
-// dd($_SESSION);
-// dd($_POST);
 require '../templates/login.php';

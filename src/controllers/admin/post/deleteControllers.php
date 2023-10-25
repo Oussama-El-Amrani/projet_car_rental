@@ -1,7 +1,6 @@
 <?php
 use App\Lib\Database\DatabaseConnection;
 use App\Model\Cars\Car;
-// use App\Model\Authentication\Authentication;
 
 
 require '../vendor/autoload.php';

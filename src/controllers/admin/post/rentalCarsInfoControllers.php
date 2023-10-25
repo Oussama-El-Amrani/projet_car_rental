@@ -10,9 +10,6 @@ require '../src/model/Cart.php';
 session_start();
 $CartRepository = new Cart();
 $CartRepository->connection = new DatabaseConnection();
-// dd($_SESSION);
-
 
 $rentalCarsInfo = $CartRepository->findCarsRentalOfAllUser();
-// dd($cars);
 require '../templates/admin/rentalCarsInfoPage.php';

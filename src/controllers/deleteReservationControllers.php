@@ -5,7 +5,7 @@ use App\Model\Cart\Cart;
 require '../vendor/autoload.php';
 require '../src/lib/database.php';
 require '../src/model/Cart.php';
-// require '../src/modele/Authentification.php';
+
 
 // Authentication::check();
 
